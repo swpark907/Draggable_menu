@@ -30,87 +30,89 @@ ul li{
   left: 50%;
   background-color:cornflowerblue;
   border-radius: 10px;
+  overflow: hidden;
+  width: 60px;
+  height: 60px;
+  transition: width 0.5s, height 0.5s;
+  transition-delay: 0s, 0.5s;
 }
 
 .container .draggable.active{
   justify-content: flex-end;
+  width: 250px;
+  height: 500px;
 }
 
 .draggable .nav{
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   background-color: tomato;
   transition: 0.5s;
+
 }
 
 .draggable .nav.active{
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   background-color: cornflowerblue;
-  
 }
 
 .draggable .nav .toggle{
-  width: 50px;
-  height: 50px;
-  padding: 0.5rem;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   text-align: center;
   font-weight: bold;
+  transition: transform 250ms linear;
 }
 
 .draggable .nav .toggle::before{
   content: '+';
   font-size: 2.5rem;
-  line-height: 2.5rem;
-  width: 50px;
-  height: 50px;
-  
-  
 }
 
-.draggable .nav .toggle.active::before{
+.draggable .nav .toggle.active{
   transform: rotate(315deg);
 }
 
 .draggable .nav .toggle i{
   cursor: pointer;
-  padding: 0.5rem;
 }
 
 .draggable .menu{
-  padding: 1rem;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   width: 250px;
-  display: none;
+  height: 100%;
   background-color: white;
-}
-
-.draggable .menu.active{
-  display: block;
+  overflow: hidden;
+  padding-top: 0.5rem;
 }
 
 .container .draggable .menu .menu__item{
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-bottom: 0.5rem;
-  padding: 1rem;
   transition: 200ms;
+  width: 100%;
+  overflow: hidden;
+}
+
+.container .draggable .menu .menu__item .menu__list__name{
+  line-height: 4rem;
 }
 
 .container .draggable .menu .menu__item:hover{
   background-color: tomato;
-  
   color: white;
 }
 
 .container .draggable .menu .menu__item i {
-  width: 2rem;
-  height: 2rem;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 0.5rem;
 }
+
 

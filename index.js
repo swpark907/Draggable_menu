@@ -2,35 +2,39 @@
 const toggle = document.querySelector('.toggle');
 const nav = document.querySelector('.nav');
 const draggable = document.querySelector('.draggable')
-const plusIcon = document.querySelector('.fa-plus');
-const cancelIcon = document.querySelector('.fa-times');
-const menu = document.querySelector('.menu');
 
 let mouseX = 0;
 let mouseY = 0;
 
-nav.addEventListener('dragstart', e => {
-  mouseX = e.offsetX;
-  mouseY = e.offsetY;
-})
+function onMouseMove (e) {
+  let x =   e.pageX - mouseX;
+  let y =   e.pageY - mouseY;
+  draggable.style.top = `${y}px`;
+  draggable.style.left = `${x}px`;
+}
 
-nav.addEventListener('drag', e => {
-  if(e.target.className.includes('nav')){
-    let x =   e.clientX - mouseX;
-    let y =   e.clientY - mouseY;
-    draggable.style.top = `${y}px`;
-    draggable.style.left = `${x}px`;
+nav.onmousedown = function(e){
+  mouseX = e.pageX - nav.getBoundingClientRect().left;
+  mouseY = e.pageY - nav.getBoundingClientRect().top;
+
+  onMouseMove(e)
+
+  document.addEventListener('mousemove', onMouseMove)
+
+  document.onmouseup = function() {
+    document.removeEventListener('mousemove', onMouseMove);
+    nav.onmouseup = null;
   }
-  e.preventDefault();
-})
+  
+}
 
-window.addEventListener('dragover', e => {
-  e.preventDefault();
-})
+nav.ondragstart = function() {
+  return false;
+}
 
 toggle.onclick = e => {
   toggle.classList.toggle('active');
-  menu.classList.toggle('active');
   nav.classList.toggle('active')
+  draggable.classList.toggle('active')
 }
 
